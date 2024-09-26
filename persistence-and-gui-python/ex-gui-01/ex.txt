@@ -1,3 +1,4 @@
-AAA - Rua Da Biblia - teste - 14
-teste - teste - teste - 13
-Teste - Teste - Teste - 10
+1 - 1 - 1 - 2
+teste - TESTE - ETE - 21
+AS - SA - SA - 21
+SA - SA - SA - 22

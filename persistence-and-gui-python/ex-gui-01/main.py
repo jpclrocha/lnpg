@@ -16,10 +16,12 @@ def carregar_listbox():
         listbox.insert(END, item)
 
 def limpar_campos():
+    global is_updating
     nome.delete(0, END)
     endereco.delete(0, END)
     cpf.delete(0, END)
     idade.delete(0, END)
+    is_updating = False
 
 def salvar_lista(lista):
     with open(FILENAME, "w", encoding="utf-8") as arquivo:
@@ -48,8 +50,18 @@ def atualizar_usuario():
 
     nome_input = nome.get().strip()
     endereco_input = endereco.get().strip()
-    idade_input = idade.get().strip()
+    idade_input = idade.get()
     cpf_input = cpf.get().strip()
+
+    if(nome_input == "" or endereco_input == "" or cpf_input == ""):
+        messagebox.showwarning("Erro nos campos", "Os campos não podem estar vazios!")
+        return
+    
+    try:
+        idade_input = int(idade_input)
+    except ValueError:
+        messagebox.showwarning("Erro nos campos", "Idade precisa ser um numero inteiro!")
+        return
 
     new_item = f"{nome_input} - {endereco_input} - {cpf_input} - {idade_input}"
 
@@ -64,15 +76,22 @@ def atualizar_usuario():
 def cadastrar_usuario():
     nome_input = nome.get().strip()
     endereco_input = endereco.get().strip()
-    idade_input = idade.get().strip()
+    idade_input = idade.get()
     cpf_input = cpf.get().strip()
         
-    item = f"{nome_input} - {endereco_input} - {cpf_input} - {idade_input}"
-
-    if(nome_input == "" or endereco_input == "" or idade_input == 0 or cpf_input == ""):
+    if(nome_input == "" or endereco_input == "" or cpf_input == ""):
         messagebox.showwarning("Erro nos campos", "Os campos não podem estar vazios!")
         return
-        
+    
+    try:
+        idade_input = int(idade_input)
+    except ValueError:
+        messagebox.showwarning("Erro nos campos", "Idade precisa ser um numero inteiro!")
+        return
+    
+    
+    item = f"{nome_input} - {endereco_input} - {cpf_input} - {idade_input}"
+
     lista = carregar_items()
     if(item in lista):
         messagebox.showwarning("Valores duplicados não são aceitos!", f"'{item}' já existe na lista!")
@@ -90,6 +109,7 @@ def save_button():
         cadastrar_usuario()
     
 def deletar_usuario():
+    global is_updating
     try:
         item_to_delete = listbox.get(listbox.curselection())
         with open(FILENAME, "r+", encoding="utf-8") as arquivo:
