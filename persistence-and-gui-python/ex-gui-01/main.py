@@ -111,7 +111,7 @@ def save_button():
 def deletar_usuario():
     global is_updating
     try:
-        item_to_delete = listbox.get(listbox.curselection())
+        item_to_delete = listbox.get(selected_index)
         with open(FILENAME, "r+", encoding="utf-8") as arquivo:
             arquivoList = arquivo.readlines()
             lista = [line.replace("\n","") for line in arquivoList]
