@@ -4,10 +4,6 @@ int main()
 {
     // onde n é obrigatóriamente o número de colunas da primeira matriz e o numero de linhas da segunda matriz 
     int m, n, p;
-    m = 2;
-    n = 3;
-    p = 2;
-
     printf("Digite a quantidade de linhas da primeira matriz: ");
     scanf("%d", &m);
 
