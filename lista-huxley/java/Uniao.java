@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -17,12 +16,12 @@ public class Uniao {
         List<String> list_1 = new ArrayList<>();
         List<String> list_2 = new ArrayList<>();
 
-        System.out.println("Valores do 1");
+        // System.out.println("Valores do 1");
         for (int i = 0; i < qtd_1; i++) {
             list_1.add(scanner.next());
         }
 
-        System.out.println("Valores do 2");
+        // System.out.println("Valores do 2");
         for (int i = 0; i < qtd_2; i++) {
             list_2.add(scanner.next());
         }
@@ -30,10 +29,23 @@ public class Uniao {
         Set<String> uniao = new HashSet<>();
         uniao.addAll(list_1);
         uniao.addAll(list_2);
-        
-
-        
         System.out.println(uniao.toString());
+        
+        Set<String> intersecao = new HashSet<>();
+        for (String string : list_1) {
+            if(list_2.contains(string)){
+                intersecao.add(string);
+            }
+        }
+        System.out.println(intersecao.toString());
+
+        Set<String> diferenca = new HashSet<>();
+        for (String string : list_1) {
+            if(!list_2.contains(string)){
+                diferenca.add(string);
+            }
+        }
+        System.out.println(diferenca.toString());
 
         scanner.close();
     }
