@@ -1,2 +1,5 @@
 .vscode/
 working-with-c/lista-1/*.exe
+*/*.class
+*/*.exe
+*/*.out
